@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import instance from "./axiosConfig";
 import Books from "./components/Books";
+import "./App.css";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -11,16 +10,14 @@ function App() {
   }, []);
 
   async function fetchData() {
-    const response = await axios.get("http://localhost:9091/api/get/books");
+    const response = await instance.get("api/get/books");
     console.log(response.data);
     setBooks(response.data);
   }
 
   return (
     <>
-      <Header />
       <Books books={books} />
-      <Footer />
     </>
   );
 }
