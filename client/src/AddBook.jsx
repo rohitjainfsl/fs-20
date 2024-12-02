@@ -68,6 +68,7 @@ function AddBook() {
           onChange={handleChange}
         ></textarea>
         <br />
+        <input type="file" name="image"  />
         <button type="submit">Add Book</button>
       </form>
     </>
