@@ -1,0 +1,97 @@
+[{
+  "_id": {
+    "$oid": "673cb8c610356e8d23794398"
+  },
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "genre": "Fiction",
+  "description": "A classic novel about the American Dream",
+  "price": 20,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732887634/books/The_Great_Gatsby_Cover_1925_Retouched_mdfxos.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673cb8c610356e8d2379439a"
+  },
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "Dystopian",
+  "description": "A dystopian vision of a totalitarian future society",
+  "price": 255,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732887660/books/715WdnBHqYL._UF1000_1000_QL80__bmw5u1.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673cb8c610356e8d2379439b"
+  },
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "genre": "Fiction",
+  "description": "A classic novel about the American Dream",
+  "price": 220,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732887634/books/The_Great_Gatsby_Cover_1925_Retouched_mdfxos.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673cb8c610356e8d2379439c"
+  },
+  "title": "To Kill a Mockingbird",
+  "author": "Harper Lee",
+  "genre": "Fiction",
+  "description": "A powerful story of racial injustice and moral growth",
+  "price": 399,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732887595/books/1200px-To_Kill_a_Mockingbird__28first_edition_cover_29_rgci6u.jpg",
+  "__v": 0,
+  "publisher": "Penguin Books"
+},
+{
+  "_id": {
+    "$oid": "673cb8c610356e8d2379439d"
+  },
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "Dystopian",
+  "description": "A dystopian vision of a totalitarian future society",
+  "price": 125,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732887660/books/715WdnBHqYL._UF1000_1000_QL80__bmw5u1.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673f751d382843e7e1880336"
+  },
+  "title": "My Experiments with Truth",
+  "author": "Mohandas Karamchand Gandhi",
+  "genre": "Autobiography",
+  "description": "My Experiments With Truth – the autobiography of Mohandas Karamchand Gandhi (or Mahatma Gandhi) covers his life from early childhood through to 1920, and is a popular and influential book. It was initiated at the insistence of Swami Anand and other close co-workers of Gandhi, in his mother-tongue Gujarati entitled Satyana Prayogo athva Atmakatha.",
+  "price": 199,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732211863/books/j-1755-my-experiments-with-truth-an-autobiography-m-k-gandhi_ln2c8x.jpg",
+  "createdAt": {
+    "$date": "2024-11-21T17:59:57.021Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-22T05:35:42.946Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67401b642e13a82a83f63aa1"
+  },
+  "title": "It’s Going to Be OK",
+  "author": "Mukta Wankhede (Mahajani)",
+  "genre": "Self Help",
+  "description": "DISCOVER THE SECRET TO FINDING INSPIRATION AND ACHIEVING YOUR GOALS BY UNLEASHING THE POWER WITHIN YOU. Sometimes, the key to success lies in the depths of our own healing. Mukta Wankhede explores the profound connection between inner healing and personal success with her latest title. Embark on a transformative journey towards self-renewal by resetting your goals with It’s Going to be OK.",
+  "price": 449,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1732254568/books/tbpydctsa7lvbutsirss.jpg",
+  "createdAt": {
+    "$date": "2024-11-22T05:49:24.857Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-22T05:49:24.857Z"
+  },
+  "__v": 0
+}]
