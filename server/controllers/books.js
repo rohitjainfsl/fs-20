@@ -1,3 +1,4 @@
+import { uploadToCloudinary } from "../middlewares/cloudinary.js";
 import Books from "../models/bookModel.js";
 import mongoose from "mongoose";
 
@@ -40,17 +41,23 @@ export async function getBook(request, response) {
 
 export async function addBook(request, response) {
   try {
-    const { title, author, price, description, publisher } = request.body;
+    // console.log(request.file);
 
-    const bookToAdd = new Books({
-      title,
-      author,
-      price,
-      description,
-      publisher,
-    });
-    await bookToAdd.save();
-    response.status(201).send({ message: "Book added" });
+    // await uploadToCloudinary(request.files.image);
+    // await uploadToCloudinary(request.files.image2);
+    await uploadToCloudinary(request.file.image);
+
+    // const { title, author, price, description, publisher } = request.body;
+
+    //   const bookToAdd = new Books({
+    //     title,
+    //     author,
+    //     price,
+    //     description,
+    //     publisher,
+    //   });
+    //   await bookToAdd.save();
+    //   response.status(201).send({ message: "Book added" });
   } catch (error) {
     response.status(500).send({ message: "Error adding book", error });
   }

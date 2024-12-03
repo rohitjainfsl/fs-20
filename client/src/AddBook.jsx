@@ -8,17 +8,33 @@ function AddBook() {
     publisher: "",
     price: "",
     description: "",
+    image: "",
+    image2: "",
   });
   const [successMsg, setSuccessMsg] = useState(false);
 
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "image")
+      setFormData({ ...formData, [name]: e.target.files[0] });
+    else setFormData({ ...formData, [name]: value });
   }
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const frm = new FormData();
+    frm.append("title", formData.title);
+    frm.append("author", formData.author);
+    frm.append("publisher", formData.publisher);
+    frm.append("price", formData.price);
+    frm.append("description", formData.description);
+    frm.append("image", formData.image);
+    frm.append("image2", formData.image2);
+
     const response = await axios.post(
       "http://localhost:9091/api/add/book",
-      formData
+      frm
     );
     if (response.status === 201) setSuccessMsg(true);
   }
@@ -68,7 +84,8 @@ function AddBook() {
           onChange={handleChange}
         ></textarea>
         <br />
-        <input type="file" name="image"  />
+        <input type="file" name="image" onChange={handleChange} />
+        <br />
         <button type="submit">Add Book</button>
       </form>
     </>

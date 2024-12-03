@@ -9,7 +9,7 @@ const app = express();
 
 const port = process.env.PORT;
 
-app.use(cors({ origin: "http://localhost:5174" })); //whitelisting this particular IP
+app.use(cors({ origin: "http://localhost:5173" })); //whitelisting this particular IP // * allow all IPs
 
 app.use(express.urlencoded({ extended: true })); //to accept req which have data in their body
 app.use(express.json()); // to check whether that data is in JSON format
