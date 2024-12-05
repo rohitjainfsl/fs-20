@@ -33,7 +33,7 @@ function AddBook() {
     frm.append("image2", formData.image2);
 
     const response = await axios.post(
-      "https://fs-20.onrender.com/api/add/book",
+      "http://localhost:9091/api/add/book",
       frm
     );
     if (response.status === 201) setSuccessMsg(true);

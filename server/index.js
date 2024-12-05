@@ -4,6 +4,7 @@ import "dotenv/config";
 import cors from "cors";
 import { startServer } from "./db/connection.js";
 import bookRouter from "./routes/bookRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -15,8 +16,7 @@ app.use(express.urlencoded({ extended: true })); //to accept req which have data
 app.use(express.json()); // to check whether that data is in JSON format
 
 app.use("/api", bookRouter);
-// app.use("/api/user", userRouter);
-// app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 await startServer();
 app.listen(port, () => console.log("Server started at port " + port));
