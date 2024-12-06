@@ -57,31 +57,28 @@ export async function verifyToken(request, response) {
 }
 
 export async function login(request, response) {
-  const idToFetch = request.params.id;
+  const { username, password } = request.body;
   try {
-    if (!idToFetch)
-      return response
-        .status(400)
-        .send({ message: "You must specify a book ID" });
+    //see if user exists
+    const user = await Users.findOne({ username });
 
-    if (!mongoose.Types.ObjectId.isValid(idToFetch))
-      return response
-        .status(400)
-        .send({ message: "Given ID is not in proper format" });
+    if (!user)
+      return response.status(401).send({ message: "Incorrect credentials" });
 
-    const book = await Books.findById(idToFetch);
-    console.log("book", book);
-    if (!book)
-      return response
-        .status(404)
-        .send({ message: "No book found with the given ID" });
+    //see if emailisVerified
 
-    return response.send(book);
+    if (!user.isEmailVerified)
+      return response
+        .status(403)
+        .send({ message: "Please verify your email before logging in" });
+
+    //see if passwords match
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch)
+      return response.status(401).send({ message: "Incorrect credentials" });
   } catch (error) {
-    return response
-      .status(500)
-      .send({ message: "Error fetching book ", error });
+    return response.status(500).send({ message: error });
   }
 }
-
-// http://localhost:5173/verify-email?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJyb2hpdGphaW50cmFpbmVyQGdtYWlsLmNvbSIsImlhdCI6MTczMzQxNTQyMiwiZXhwIjoxNzMzNDE5MDIyfQ.Trw6aXTkzN7ak085bn4Janu5H9mkPQzHFgNVIKpAyKM
