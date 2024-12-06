@@ -50,15 +50,16 @@ export async function register(request, response) {
   }
 }
 
-export async function verifyToken(request, response) {
-  //verify the token
-  //decode the token to fetch email
-  //toggle isEmailVerified field of user with fetched email
-}
+// export async function verifyToken(request, response) {
+//   //verify the token
+//   //decode the token to fetch email
+//   //toggle isEmailVerified field of user with fetched email
+// }
 
 export async function login(request, response) {
   const { username, password } = request.body;
   try {
+    // AUTHENTICATION
     //see if user exists
     const user = await Users.findOne({ username });
 
@@ -78,6 +79,33 @@ export async function login(request, response) {
 
     if (!passwordMatch)
       return response.status(401).send({ message: "Incorrect credentials" });
+
+    //AUTHORISATION
+    // SESSION VARIABLE = TOKEN
+
+    // Generate JWT token
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.username,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    //Send it to frontend:
+    //1. send it with response return response.status(200).send({token: token})
+    //2. send the token as an HTTP cookie
+
+    // Set cookie with JWT token
+    response.cookie("token", token, {
+      httpOnly: true, //no other JS script will be able to see this on frontend
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
   } catch (error) {
     return response.status(500).send({ message: error });
   }
