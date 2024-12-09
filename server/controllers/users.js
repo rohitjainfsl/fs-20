@@ -50,11 +50,6 @@ export async function register(request, response) {
   }
 }
 
-// export async function verifyToken(request, response) {
-//   //verify the token
-//   //decode the token to fetch email
-//   //toggle isEmailVerified field of user with fetched email
-// }
 
 export async function login(request, response) {
   const { username, password } = request.body;

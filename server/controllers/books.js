@@ -4,8 +4,56 @@ import mongoose from "mongoose";
 
 export async function getBooks(request, response) {
   try {
-    const allBooks = await Books.find();
-    response.send(allBooks);
+    let query = {};
+
+    // new RegExp()
+
+    // i - case insensitivity
+
+    if (request.query.author) {
+      // query.author = request.query.author;
+      query.author = { $regex: new RegExp(request.query.author, "i") };
+    }
+    if (request.query.publisher) {
+      // query.publisher = request.query.publisher;
+      query.publisher = {
+        $regex: new RegExp(request.query.publisher, "i"),
+      };
+    }
+    if (request.query.title) {
+      // query.title = request.query.title;
+      query.title = { $regex: new RegExp(request.query.title, "i") };
+    }
+
+    if (request.query.minPrice && request.query.maxPrice) {
+      query.price = {
+        $gte: request.query.minPrice,
+        $lte: request.query.maxPrice,
+      };
+    }
+
+    console.log(request.query);
+
+    //products per page
+    //total number of products
+    //total number of pages
+    //products to skip
+
+    //PAGINATION
+    const page = request.query.page ? parseInt(request.query.page) : 1;
+    const limit = 5; //how many products to display per page
+    const skip = (page - 1) * limit; //0 5
+
+    const allBooks = await Books.find(query).skip(skip).limit(limit);
+
+    const totalCount = await Books.countDocuments(query);
+
+    // const allBooks = await Books.find(query);
+    response.send({
+      allBooks,
+      currentPage: page,
+      totalPages: Math.ceil(totalCount / limit),
+    });
   } catch (error) {
     response.status(500).send({ message: "Error fetching books", error });
   }
