@@ -94,4 +94,112 @@
     "$date": "2024-11-22T05:49:24.857Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756eada1f23f4ae18670a75"
+  },
+  "title": "Book 1",
+  "price": 149,
+  "author": "Somesh Sharma",
+  "description": "This is book 1",
+  "publisher": "Penguin",
+  "createdAt": {
+    "$date": "2024-12-09T13:04:26.256Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:04:26.256Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
+},
+{
+  "_id": {
+    "$oid": "6756eae91f23f4ae18670a77"
+  },
+  "title": "Book 2",
+  "price": 199,
+  "author": "Rohit Jain",
+  "description": "This is book 2",
+  "publisher": "Penguin",
+  "createdAt": {
+    "$date": "2024-12-09T13:04:41.872Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:04:41.872Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
+},
+{
+  "_id": {
+    "$oid": "6756eaf61f23f4ae18670a79"
+  },
+  "title": "Book 3",
+  "price": 99,
+  "author": "Joy Bose",
+  "description": "This is book 3",
+  "publisher": "Penguin",
+  "createdAt": {
+    "$date": "2024-12-09T13:04:54.920Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:04:54.920Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
+},
+{
+  "_id": {
+    "$oid": "6756eb071f23f4ae18670a7b"
+  },
+  "title": "Book 4",
+  "price": 199,
+  "author": "Rohit Jain",
+  "description": "This is book 4",
+  "publisher": "Full Stack Learning",
+  "createdAt": {
+    "$date": "2024-12-09T13:05:11.803Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:05:11.803Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
+},
+{
+  "_id": {
+    "$oid": "6756eb151f23f4ae18670a7d"
+  },
+  "title": "Book 5",
+  "price": 149,
+  "author": "Somesh Sharma",
+  "description": "This is book 5",
+  "publisher": "Full Stack Learning",
+  "createdAt": {
+    "$date": "2024-12-09T13:05:25.873Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:05:25.873Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
+},
+{
+  "_id": {
+    "$oid": "6756eb261f23f4ae18670a7f"
+  },
+  "title": "Book 6",
+  "price": 199,
+  "author": "Rohit Jain",
+  "description": "This is book 6",
+  "publisher": "Full Stack Learning",
+  "createdAt": {
+    "$date": "2024-12-09T13:05:42.668Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T13:05:42.668Z"
+  },
+  "__v": 0,
+  "image": "https://res.cloudinary.com/ddadanczt/image/upload/v1733749760/books/kkaitbujino1pspb7thi.jpg"
 }]
