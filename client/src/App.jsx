@@ -12,7 +12,7 @@ function App() {
   async function fetchData() {
     const response = await instance.get("api/get/books");
     console.log(response.data);
-    setBooks(response.data);
+    setBooks(response.data.allBooks);
   }
 
   return (
