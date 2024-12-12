@@ -1,25 +1,32 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Register from "./pages/Register.jsx";
-import Login from "./pages/Login.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
+import Home from "./pages/Home";
+import Header from "./pages/Header";
+import Login from "./pages/Login";
+import Blog from "./pages/Blog";
+import Footer from "./pages/Footer"
+import "./App.css";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/profile",
-    element: <ProtectedRoute />,
+    children: [
+      {
+        path:"/header",
+        element: <Header />,
+      },
+      {
+        path:"/blog",
+        element:<Blog/>
+      },
+      {
+        path:"/login",
+        element:<Login/>
+      },
+      {
+        path:"/footer",
+        element:<Footer/>
+      },
+    ],
   },
 ]);
 

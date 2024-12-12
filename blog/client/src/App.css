@@ -1,42 +1,105 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  object-fit: contain;
+}
+header,
+footer {
+  background-color: rgb(152, 96, 209);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  color: #fff;
+  height: 50px;
+}
+header ul {
+  display: flex;
+}
+header a,
+header ul a {
+  margin: 0 0.5rem;
+  padding: 0 0.5rem;
+  color: #fff;
+}
+
+#books,
+#singleBook {
+  padding: 1rem 3rem;
+}
+#books > h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.books-wrapper,
+#singleBook {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.books-wrapper .book {
+  width: 23%;
+  height: 350px;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.books-wrapper .book img {
+  height: 200px;
+  margin-bottom: 1rem;
+  object-fit: contain;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.books-wrapper .book h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cta {
+  display: inline-block;
+  margin: 0.25rem 0;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: rgb(152, 96, 209);
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+#singleBook .left {
+  width: 23%;
+}
+#singleBook .left img {
+  max-height: 350px;
 }
 
-.card {
-  padding: 2em;
+#singleBook .right {
+  width: 75%;
+}
+#singleBook .right h4 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+#singleBook .right .author,
+#singleBook .right .description {
+  margin-bottom: 1rem;
+}
+#singleBook .right .description {
+  line-height: 1.5;
+}
+#singleBook .right .author::before {
+  content: " - ";
+  vertical-align: top;
 }
 
-.read-the-docs {
-  color: #888;
+footer {
+  text-align: center;
+  color: #fff;
+  padding: 0.25rem 0;
 }
