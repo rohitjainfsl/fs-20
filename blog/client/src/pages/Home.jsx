@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import { Outlet } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+import "./Main.css";
 
-function HOme() {
+function Home() {
   return (
-    <div>HOme</div>
-  )
+    <div className="home-page">
+      <Header />
+      <Container fluid className="main-content">
+        <Outlet />
+      </Container>
+      <Footer />
+    </div>
+  );
 }
 
-export default HOme
+export default Home;
