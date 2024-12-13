@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Card, Button, Container, Row, Col } from "react-bootstrap";
-import AddBlog from "./AddBlog";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 import Book1 from "../assets/shopping (1).webp";
 import Book2 from "../assets/shopping (2).webp";
@@ -87,74 +86,41 @@ const postsData = [
   },
 ];
 
-const Blog = () => {
-  const [posts] = useState(postsData);
-  const [showAddBlog, setShowAddBlog] = useState(false);
+const AuthorPage = () => {
+  const { author } = useParams(); 
 
-  const handleAddBlogClick = () => {
-    setShowAddBlog(!showAddBlog);
-  };
+//   const filteredPosts = postsData.find((post) => post.author === author);
+  const filteredPosts = postsData.filter((post) => post.author.toLowerCase() === author.toLowerCase());
+//   console.log(filteredPosts);
+  if (filteredPosts.length === 0) {
+    return (
+      <Container className="my-4">
+        <h1 className="text-center m-3">No books found for {author}</h1>
+      </Container>
+    );
+  }
 
-  const handleAddBlog = (newBlog) => {
-    setPosts([newBlog, ...posts]);
-    setShowAddBlog(false);
-  };
 
   return (
     <Container className="my-4">
-      <h1 className=" text-center m-3">Blog</h1>
-
-      <Button
-        variant="success"
-        onAddBlog={handleAddBlog}
-        onClick={handleAddBlogClick}
-        className="mb-3"
-      >
-        {showAddBlog ? "Cancel" : "Add Blog"}
-      </Button>
-
-      {showAddBlog && (
-        <AddBlog onAddBlog={handleAddBlog} onClose={handleAddBlogClick} />
-      )}
-
+      <h1 className="text-center m-3">Books by {author}</h1>
       <Row>
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <Col key={post.id} xs={10} sm={4} md={2} lg={3} className="mb-2">
             <Card style={{ height: "100%" }}>
-              <Link to={`/post/${post.id}`}>
-                <Card.Img
-                  variant="top"
-                  src={post.image}
-                  alt={post.title}
-                  style={{
-                    objectFit: "cover",
-                    height: "200px",
-                    width: "100%",
-                  }}
-                />
-              </Link>
-              <Card.Body
-                className="d-flex flex-column"
-                style={{ height: "60%" }}
-              >
+              <Card.Img
+                variant="top"
+                src={post.image}
+                alt={post.title}
+                style={{
+                  objectFit: "cover",
+                  height: "200px",
+                  width: "100%",
+                }}
+              />
+              <Card.Body className="d-flex flex-column" style={{ height: "60%" }}>
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Subtitle className="mb-1 text-muted">
-                  By <Link to={`/author/${post.author}`}>{post.author}</Link> |{" "}
-                  {post.date}
-                </Card.Subtitle>
-
-                {/* <Card.Text style={{ flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {post.content}
-                </Card.Text> */}
-                <Link to={`/post/${post.id}`}>
-                  <Button
-                    variant="primary"
-                    className="mt-2"
-                    style={{ marginTop: 0 }}
-                  >
-                    Read more
-                  </Button>
-                </Link>
+                <Card.Text>{post.content}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -164,4 +130,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default AuthorPage;
