@@ -12,7 +12,6 @@ function Home() {
       <Header />
       <Container fluid className="main-content">
         <Outlet />
-        {/* <Blog/> */}
       </Container>
       <Footer />
     </div>
