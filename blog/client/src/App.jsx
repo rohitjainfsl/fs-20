@@ -4,6 +4,7 @@ import Header from "./pages/Header";
 import Login from "./pages/Login";
 import Blog from "./pages/Blog";
 import Footer from "./pages/Footer"
+import AddBlog from "./pages/AddBlog";
 import "./App.css";
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:"/footer",
         element:<Footer/>
+      },
+      {
+        path:"/addblog",
+        element:<AddBlog />
       },
     ],
   },

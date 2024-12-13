@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import AddBlog from "./AddBlog";
 
 import Book1 from '../assets/shopping (1).webp';
 import Book2 from '../assets/shopping (2).webp';
@@ -79,10 +80,27 @@ const postsData = [
 
 const Blog = () => {
   const [posts] = useState(postsData);
+  const [showAddBlog, setShowAddBlog] = useState(false);
+
+  const handleAddBlogClick = () => {
+    setShowAddBlog(!showAddBlog);
+  };
+
+  const handleAddBlog = (newBlog) => {
+    setPosts([newBlog, ...posts]);
+    setShowAddBlog(false); 
+  };
 
   return (
     <Container className="my-4">
       <h1 className=" text-center m-3">Blog</h1>
+
+      <Button variant="success" onAddBlog={handleAddBlog} onClick={handleAddBlogClick} className="mb-3">
+        {showAddBlog ? "Cancel" : "Add Blog"}
+      </Button>
+
+      {showAddBlog && <AddBlog onAddBlog={handleAddBlog} onClose={handleAddBlogClick} />}
+
       <Row>
         {posts.map((post) => (
           <Col key={post.id} xs={10} sm={4} md={2} lg={3} className="mb-2">
@@ -105,7 +123,7 @@ const Blog = () => {
                 <Card.Text style={{ flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis" }}>
                   {post.content}
                 </Card.Text>
-                <Button variant="primary" className="mt-2" style={{ marginTop:0 }}>
+                <Button variant="primary" className="mt-2" style={{ marginTop:0 }} >
                   Read more
                 </Button>
               </Card.Body>
