@@ -3,33 +3,35 @@ import Home from "./pages/Home";
 import Header from "./pages/Header";
 import Login from "./pages/Login";
 import Blog from "./pages/Blog";
-import Footer from "./pages/Footer"
+import Footer from "./pages/Footer";
 import AddBlog from "./pages/AddBlog";
+import BookDeatials from "./pages/Bookdeatials";
 import "./App.css";
+// import "./pages/BookData.css";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     children: [
       {
-        path:"/header",
-        element: <Header />,
+        path: "/blog",
+        element: <Blog />,
       },
       {
-        path:"/blog",
-        element:<Blog/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:"/login",
-        element:<Login/>
+        path: "/footer",
+        element: <Footer />,
       },
       {
-        path:"/footer",
-        element:<Footer/>
+        path: "/addblog",
+        element: <AddBlog />,
       },
       {
-        path:"/addblog",
-        element:<AddBlog />
+        path: "/post/:id",
+        element: <BookDeatials />,
       },
     ],
   },

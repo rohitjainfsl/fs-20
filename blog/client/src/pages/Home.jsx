@@ -4,6 +4,7 @@ import Footer from './Footer';
 import { Outlet } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import "./Main.css";
+// import Blog from './Blog';
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Header />
       <Container fluid className="main-content">
         <Outlet />
+        {/* <Blog/> */}
       </Container>
       <Footer />
     </div>
