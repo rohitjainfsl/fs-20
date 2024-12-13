@@ -6,7 +6,7 @@ import "./Main.css";
 function Header() {
   return (
     <>
-      <footer>
+      <header >
         <Navbar expand="lg">
           <Container>
             <Navbar.Brand as={Link} to="/">
@@ -34,7 +34,7 @@ function Header() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-      </footer>
+      </header>
     </>
   );
 }

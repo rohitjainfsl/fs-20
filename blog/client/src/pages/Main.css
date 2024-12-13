@@ -14,10 +14,11 @@
     padding: 20px; 
   }
   
-  footer {
+  header {
     background-color: #f8f9fa;
     padding: 10px 0;
-    text-align: center;
+    text-align:center;
+    /* margin: 10px; */
   }
 
   /* ///////////////////////////////////////////////////// */
