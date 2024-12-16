@@ -14,13 +14,15 @@ function ProtectedRoute() {
 
   async function validateToken() {
     try {
-      await instance.get("/auth/validate-token", { withCredentials: true });
-
+      await instance.get("/auth/check");
       // If no error is thrown, set the user as authenticated
       setIsAuthenticated(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsAuthenticated(false);
+    } finally {
+      setIsLoading(false); //remove the loader from the screen
     }
   }
 

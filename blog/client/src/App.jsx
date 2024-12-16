@@ -8,6 +8,7 @@ import AddBlog from "./pages/AddBlog";
 import BookDeatials from "./pages/Bookdeatials";
 import "./App.css";
 import AuthorPage from "./pages/Author";
+import ProtectedRoute from "./components/ProtectedRoute";
 // import { useNavigate } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -16,8 +17,8 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        index: true, 
-        element: <Blog />
+        index: true,
+        element: <Blog />,
       },
       {
         path: "/blog",
@@ -40,9 +41,13 @@ const router = createBrowserRouter([
         element: <BookDeatials />,
       },
       {
-        path:"/author/:author",
-        element:<AuthorPage />
-      }
+        path: "/author/:author",
+        element: <AuthorPage />,
+      },
+      {
+        path: "/profile",
+        element: <ProtectedRoute />,
+      },
     ],
   },
 ]);

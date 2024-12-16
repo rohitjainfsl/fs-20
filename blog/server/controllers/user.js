@@ -90,7 +90,7 @@ export async function login(req, res) {
 
     // Set cookie with JWT token
     res.cookie("token", token, {
-      httpOnly: true, //no other JS script will be able to see this on frontend
+      httpOnly: true, //no other JS script will be able to see/modify this on frontend
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 24 * 60 * 60 * 1000,
@@ -102,6 +102,7 @@ export async function login(req, res) {
       email: user.email,
       phone: user.phone,
       gender: user.gender,
+      username: user.username,
     };
 
     // res.send(user).select(-password);
@@ -109,6 +110,11 @@ export async function login(req, res) {
   } catch (error) {
     return res.status(500).send({ message: error });
   }
+}
+
+export function logout(req, res) {
+  res.clearCookie("token");
+  res.status(200).send({ message: "Logged out successfully" });
 }
 
 // export const profile = async (req, res) => {

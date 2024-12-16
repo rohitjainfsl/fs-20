@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import "./Main.css";
+import instance from "../axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Login details:', { email, password });
+    try {
+      const response = await instance.post("/user/login", {
+        username,
+        password,
+      });
+      console.log(response.data);
+      if (response.status === 200) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
       <Row className="w-100">
         <Col md={6} lg={4} className="mx-auto">
           <Card className="shadow-sm">
@@ -20,11 +37,11 @@ function LoginPage() {
               <h2 className="text-center mb-4">Login</h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formEmail">
-                  <Form.Label>Email Address</Form.Label>
+                  <Form.Label>Username</Form.Label>
                   <Form.Control
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
+                    type="text"
+                    placeholder="Enter your username"
+                    value={username}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
