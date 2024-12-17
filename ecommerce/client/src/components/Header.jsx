@@ -4,14 +4,13 @@ function Header() {
   return (
     <header>
       <h1>
-        <Link to="/">Bookstore</Link>
+        <Link to="/">Geekster Ecommerce</Link>
       </h1>
+
       <ul>
         <li>
-          <Link to="/">Home</Link>
-          <Link to="">Contact</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Sign Up</Link>
+          <Link to="/cart">Cart</Link>
+          <Link to="/contact">Contact Us</Link>
         </li>
       </ul>
     </header>
