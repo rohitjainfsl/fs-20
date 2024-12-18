@@ -5,12 +5,13 @@ import {
   getProduct,
   addProduct,
 } from "../controllers/products.js";
+import { protectRoute } from "../utils/auth.js";
 
 const productRouter = express.Router();
 
 productRouter.get("/get", getProducts);
 productRouter.get("/get/:id", getProduct);
 
-productRouter.post("/add", upload.single("image"), addProduct);
+productRouter.post("/add", protectRoute, upload.single("image"), addProduct);
 
 export default productRouter;
