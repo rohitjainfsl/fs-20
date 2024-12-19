@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
 
 function Header() {
+  const { isAuthenticated, logout } = useAuth();
   return (
     <header>
       <h1>
@@ -11,12 +13,29 @@ function Header() {
 
       <ul>
         <li>
-          <Link to="/cart">Cart</Link>
           <Link to="/contact">Contact Us</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register-seller">Register as a Seller</Link>
-          <Link to="/addProduct">Add Product</Link>
         </li>
+
+        {!isAuthenticated ? (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/register-seller">Register as a Seller</Link>
+            </li>
+            <li>
+              <Link to="/addProduct">Add Product</Link>
+            </li>
+            <li>
+              <Link to="/cart">Cart</Link>
+            </li>
+            <li>
+              <button onClick={logout}>Logout</button>
+            </li>
+          </>
+        )}
       </ul>
     </header>
   );

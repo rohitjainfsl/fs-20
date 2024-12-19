@@ -75,7 +75,7 @@ export async function addProduct(req, res) {
     const { name, brand, category, price, description, inStock, inventory } =
       req.body;
 
-    // console.log("user", req.user);
+    const attributesArray = JSON.parse(req.body.attributes);
 
     const productToAdd = new product({
       name,
@@ -86,7 +86,8 @@ export async function addProduct(req, res) {
       inStock,
       inventory,
       image: imageObj.secure_url,
-      addedBy: req.user._id
+      addedBy: req.user._id,
+      attributes: attributesArray,
     });
 
     await productToAdd.save();

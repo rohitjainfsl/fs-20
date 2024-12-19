@@ -9,6 +9,7 @@ import RegisterSeller from "./pages/RegisterSeller";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddProduct from "./pages/AddProduct";
 import Profile from "./pages/Profile";
+import { AuthProvider } from "./contexts/Auth";
 
 function App() {
   const router = createBrowserRouter([
@@ -56,7 +57,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

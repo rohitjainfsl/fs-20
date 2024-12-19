@@ -1,8 +1,11 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import instance from "../axiosConfig";
 import { useState } from "react";
+import { useAuth } from "../contexts/Auth";
 
 function Login() {
+  const { login } = useAuth();
+
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -25,6 +28,7 @@ function Login() {
       const finalData = Object.fromEntries(formdata.entries());
       const response = await instance.post("/user/login", finalData);
       if (response.status === 200) {
+        login();
         return navigate("/");
       }
     } catch (error) {

@@ -8,25 +8,34 @@ function AddProduct() {
     category: "",
     price: "",
     description: "",
-    attribute: {},
+    attributes: [{ name: "", value: "" }],
     inStock: "",
     inventory: "",
     image: "",
   });
 
+  function handleAttributeChange(index, field, value) {
+    const newAttributes = data.attributes.map((attr, i) => {
+      if (i === index) {
+        return { ...attr, [field]: value };
+      }
+      return attr;
+    });
+
+    setData({
+      ...data,
+      attributes: newAttributes,
+    });
+  }
+
+  function addNewAttribute() {
+    setData({
+      ...data,
+      attributes: [...data.attributes, { name: "", value: "" }],
+    });
+  }
+
   function handleChange(e) {
-    // if (e.target.name === "attributeName") {
-    //   setData({
-    //     ...data,
-    //     attribute: { ...data.attribute, name: e.target.value },
-    //   });
-    // }
-    // if (e.target.name === "attributeValue") {
-    //   setData({
-    //     ...data,
-    //     attribute: { ...data.attribute, value: e.target.value },
-    //   });
-    // }
     if (e.target.name === "image") {
       setData({ ...data, [e.target.name]: e.target.files[0] });
     } else {
@@ -46,6 +55,7 @@ function AddProduct() {
     formdata.append("category", data.category);
     formdata.append("brand", data.brand);
     formdata.append("description", data.description);
+    formdata.append("attributes", JSON.stringify(data.attributes));
     formdata.append("inStock", data.inStock);
     formdata.append("inventory", data.inventory);
     formdata.append("image", data.image);
@@ -97,22 +107,42 @@ function AddProduct() {
           onChange={handleChange}
         ></textarea>
         <br />
-        {/* <div id="attributes">
-          <input
-            type="text"
-            name="attributeName"
-            placeholder="Enter Attribute Name"
-            value={data.attribute.name}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="attributeValue"
-            placeholder="Enter Attribute Value"
-            value={data.attribute.value}
-            onChange={handleChange}
-          />
-        </div> */}
+        <div id="attributes">
+          {data.attributes.map((attribute, index) => {
+            return (
+              <div className="attribute-group" key={index}>
+                <input
+                  type="text"
+                  name="attributeName"
+                  placeholder="Enter Attribute Name"
+                  value={attribute.name}
+                  onChange={(e) =>
+                    handleAttributeChange(index, "name", e.target.value)
+                  }
+                />
+                <input
+                  type="text"
+                  name="attributeValue"
+                  placeholder="Enter Attribute Value"
+                  value={attribute.value}
+                  onChange={(e) =>
+                    handleAttributeChange(index, "value", e.target.value)
+                  }
+                />
+              </div>
+            );
+          })}
+          {/*
+           */}
+
+          <button
+            type="button"
+            className="flex items-center gap-2 text-blue-500"
+            onClick={addNewAttribute}
+          >
+            Add Attribute
+          </button>
+        </div>
         <div id="inStock">
           <input
             type="radio"
