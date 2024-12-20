@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import instance from "../axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
@@ -12,25 +13,58 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function checkAuth() {
-    const response = await instance.get("/auth/validate-token", {
-      withCredentials: true,
-    });
-    console.log(response);
+    try {
+      const response = await instance.get("/auth/validate-token", {
+        withCredentials: true,
+      });
+      console.log(response);
+      setIsAuthenticated(true);
+    } catch (error) {
+      setIsAuthenticated(false);
+    }
   }
 
   function login() {
     setIsAuthenticated(true);
   }
 
+  function authenticate() {
+    setIsAuthenticated(true);
+  }
+
+  function deAuthenticate() {
+    setIsAuthenticated(false);
+  }
+
+  console.log("isAuthenticated", isAuthenticated);
+
   async function logout() {
-    const response = await instance.post("/user/logout");
-    if (response.status === 200) {
+    try {
+      const response = await instance.post("/user/logout", {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
       setIsAuthenticated(false);
+      window.location.href = "/login";
     }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        loading,
+        login,
+        logout,
+        authenticate,
+        deAuthenticate,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

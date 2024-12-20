@@ -167,7 +167,7 @@ function AddProduct() {
           onChange={handleChange}
         />{" "}
         <br />
-        <input type="file" name="image" onChange={handleChange} />
+        <input type="file" name="image" onChange={handleChange} /> <br />
         <button type="submit">Add Product</button>
       </form>
     </>

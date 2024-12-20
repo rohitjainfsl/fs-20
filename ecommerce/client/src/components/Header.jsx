@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
+import { FaCog, FaCaretDown } from "react-icons/fa";
 
 function Header() {
   const { isAuthenticated, logout } = useAuth();
+
+  async function handleLogout() {
+    await logout();
+  }
+
   return (
     <header>
       <h1>
@@ -32,7 +38,17 @@ function Header() {
               <Link to="/cart">Cart</Link>
             </li>
             <li>
-              <button onClick={logout}>Logout</button>
+              <Link to="">
+                <FaCog /> <FaCaretDown />
+              </Link>
+              <ul className="submenu">
+                <li>
+                  <Link to="/profile">My Profile</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
             </li>
           </>
         )}

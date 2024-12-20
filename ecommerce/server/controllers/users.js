@@ -178,9 +178,29 @@ export const profile = async (req, res) => {
       phone: user.phone,
       gender: user.gender,
       createdAt: user.createdAt,
+      role: user.role,
     });
   } catch (error) {
     console.error("Profile fetch error:", error);
     res.status(500).send({ message: "Server error while fetching profile" });
+  }
+};
+
+export const editProfile = async (req, res) => {
+  const { name, email, role, phone, username } = req.body;
+
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      name,
+      email,
+      role,
+      phone,
+      username,
+    });
+
+    res.status(200).send({ message: "Product Updated" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({ message: "Error updating product", error });
   }
 };
