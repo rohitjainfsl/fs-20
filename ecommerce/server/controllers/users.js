@@ -204,3 +204,28 @@ export const editProfile = async (req, res) => {
     return res.status(500).send({ message: "Error updating product", error });
   }
 };
+
+//WISHLIST
+export async function addToWishlist(req, res) {
+  try {
+    const { productId } = req.body;
+    const userId = req.user._id;
+
+    // Check if product exists in wishlist
+    const user = await User.findById(userId);
+    if (user.wishlist.includes(productId)) {
+      return res.status(400).json({ message: "Product already in wishlist" });
+    }
+
+    //Add the product to wishlist
+    await User.findByIdAndUpdate(userId, {
+      $push: { wishlist: productId },
+    });
+    res.status(200).json({ message: "Added to wishlist successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding to wishlist" });
+  }
+}
+
+export async function removeFromWishlist(req, res) {}

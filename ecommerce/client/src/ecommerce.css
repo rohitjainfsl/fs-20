@@ -62,7 +62,7 @@ header ul li .submenu button {
   margin-right: 0;
 }
 
-header ul li:hover .submenu{
+header ul li:hover .submenu {
   display: block;
 }
 
@@ -96,7 +96,11 @@ header ul li:hover .submenu{
 }
 .product .productContent .addToCartBtn {
   background-color: aquamarine;
-  padding: 10px 20px;
+  padding: 6px 12px;
+  margin: 0.5rem 0.25rem;
+  font-size: 0.8rem;
+  border: 2px solid rgb(70, 230, 176);
+  cursor: pointer;
   border-radius: 10px;
   font-weight: 700;
 }

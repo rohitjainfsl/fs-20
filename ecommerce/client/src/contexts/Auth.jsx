@@ -1,12 +1,19 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import instance from "../axiosConfig";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [loading, setLoading] = useState(true);
+
+  const [authState, setAuthState] = useState({
+    isAuthenticated: false,
+    user: null,
+    loading: true,
+    error: null,
+  });
 
   useEffect(() => {
     checkAuth();
@@ -17,52 +24,72 @@ export function AuthProvider({ children }) {
       const response = await instance.get("/auth/validate-token", {
         withCredentials: true,
       });
-      console.log(response);
-      setIsAuthenticated(true);
+      // console.log(response);
+      // setIsAuthenticated(true);
+
+      setAuthState({
+        isAuthenticated: true,
+        user: response.data.user,
+        loading: false,
+        error: null,
+      });
     } catch (error) {
-      setIsAuthenticated(false);
+      // setIsAuthenticated(false);
+      setAuthState({
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+        error: error.response.data.message,
+      });
     }
   }
 
-  function login() {
-    setIsAuthenticated(true);
+  function login(userData) {
+    // setIsAuthenticated(true);
+    setAuthState({
+      isAuthenticated: true,
+      user: userData,
+      loading: false,
+      error: null,
+    });
   }
-
-  function authenticate() {
-    setIsAuthenticated(true);
-  }
-
-  function deAuthenticate() {
-    setIsAuthenticated(false);
-  }
-
-  console.log("isAuthenticated", isAuthenticated);
 
   async function logout() {
     try {
-      const response = await instance.post("/user/logout", {
-        withCredentials: true,
+      const response = await instance.post(
+        "/user/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      setAuthState({
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+        error: null,
       });
-      if (response.status === 200) {
-        setIsAuthenticated(false);
-      }
     } catch (error) {
-      console.log(error);
-    } finally {
-      setIsAuthenticated(false);
-      window.location.href = "/login";
+      setAuthState({
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+        error: error.response.data.message,
+      });
     }
+  }
+
+  function updateUser(userData) {
+    setAuthState({ ...authState, user: userData });
   }
 
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated,
-        loading,
+        ...authState,
         login,
         logout,
-        authenticate,
-        deAuthenticate,
+        updateUser,
       }}
     >
       {children}

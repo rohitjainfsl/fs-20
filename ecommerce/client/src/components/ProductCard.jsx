@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
+import { useWishlist } from "../hooks/useWishlist";
 
 function ProductCard({ product }) {
+  const { toggleWishlist, isInWishlist } = useWishlist();
   return (
     <div className="product">
       <div className="productImage">
@@ -14,6 +16,14 @@ function ProductCard({ product }) {
         <p className="price">
           <LiaRupeeSignSolid /> {product.price}
         </p>
+        <button
+          onClick={() => toggleWishlist(product._id)}
+          className="addToCartBtn"
+        >
+          {isInWishlist(product._id)
+            ? "Remove from Wishlist"
+            : "Add to Wishlist"}
+        </button>
         <Link to="" className="addToCartBtn">
           Add To Cart
         </Link>
