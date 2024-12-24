@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AddProduct from "./pages/AddProduct";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./contexts/Auth";
+import SingleProduct from "./pages/SIngleProduct";
 
 function App() {
   const router = createBrowserRouter([
@@ -52,6 +53,10 @@ function App() {
               <Profile />
             </ProtectedRoute>
           ),
+        },
+        {
+          path: "/product/:id",
+          element: <SingleProduct />,
         },
       ],
     },

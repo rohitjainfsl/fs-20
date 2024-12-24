@@ -41,7 +41,7 @@ export function useWishlist() {
   }
 
   function handleRemoveFromWishlist(productId) {
-
+    
   }
 
   return { isInWishlist, toggleWishlist };

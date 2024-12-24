@@ -1,5 +1,6 @@
-import { product } from "../models/productModel.js";
+import { Product } from "../models/productModel.js";
 import { uploadToCloudinary } from "../utils/cloudinary.js";
+import mongoose from "mongoose";
 
 export async function getProducts(req, res) {
   try {
@@ -25,9 +26,9 @@ export async function getProducts(req, res) {
     const limit = 10;
     const skip = (page - 1) * limit;
 
-    const products = await product.find(query).skip(skip).limit(limit);
+    const products = await Product.find(query).skip(skip).limit(limit);
 
-    const totalCount = await product.countDocuments(query);
+    const totalCount = await Product.countDocuments(query);
 
     if (!products)
       return res.status(400).send({ message: "No Products found" });
@@ -51,11 +52,12 @@ export async function getProduct(req, res) {
         .status(400)
         .send({ message: "Provide an ID to find a product" });
 
-    if (mongoose.Types.ObjectId.isValid(keyword))
-      productToFind = await product.findById(keyword);
-    else {
-      productToFind = await product.find({ uid: keyword });
+    if (mongoose.Types.ObjectId.isValid(keyword)) {
+      productToFind = await Product.findById(keyword);
+    } else {
+      productToFind = await Product.find({ uid: keyword });
     }
+    // console.log("productToFind", productToFind);
 
     if (!productToFind)
       return res
@@ -64,7 +66,9 @@ export async function getProduct(req, res) {
 
     res.send(productToFind);
   } catch (error) {
-    res.status(500).send({ message: "Error fetching product", error });
+    res
+      .status(500)
+      .send({ message: "Error fetching product", error: error.message });
   }
 }
 
@@ -77,7 +81,7 @@ export async function addProduct(req, res) {
 
     const attributesArray = JSON.parse(req.body.attributes);
 
-    const productToAdd = new product({
+    const productToAdd = new Product({
       name,
       brand,
       category,

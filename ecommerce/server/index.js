@@ -6,6 +6,7 @@ import { connectToDB } from "./db/connection.js";
 import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
 import authRouter from "./routes/authRouter.js";
+import cartRouter from "./routes/cartRouter.js";
 
 const PORT = process.env.PORT;
 
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/cart", cartRouter);
 
 await connectToDB();
 app.listen(PORT, () => console.log(`SERVER STARTED AT PORT ${PORT}`));

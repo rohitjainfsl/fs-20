@@ -8,10 +8,14 @@ function ProductCard({ product }) {
   return (
     <div className="product">
       <div className="productImage">
-        <img src={product.image} alt="Product Image" />
+        <Link to={`/product/${product._id}`}>
+          <img src={product.image} alt="Product Image" />
+        </Link>
       </div>
       <div className="productContent">
-        <h3>{product.name}</h3>
+        <h3>
+          <Link to={`/product/${product._id}`}>{product.name}</Link>
+        </h3>
         <p>{product.brand}</p>
         <p className="price">
           <LiaRupeeSignSolid /> {product.price}
@@ -24,9 +28,6 @@ function ProductCard({ product }) {
             ? "Remove from Wishlist"
             : "Add to Wishlist"}
         </button>
-        <Link to="" className="addToCartBtn">
-          Add To Cart
-        </Link>
       </div>
     </div>
   );
