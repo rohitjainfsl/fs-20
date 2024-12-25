@@ -1,63 +1,65 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import instance from "../axiosConfig";
+import { LiaRupeeSignSolid } from "react-icons/lia";
 import { useWishlist } from "../hooks/useWishlist";
 import useCart from "../hooks/useCart";
 
 function SingleProduct() {
-  const { id } = useParams();
   const [product, setProduct] = useState({});
+  const navigate = useNavigate();
 
-  const { toggleWishlist, isInWishlist } = useWishlist();
-  const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist, loading } = useWishlist();
+  const { addToCart, loading: cartLoading } = useCart();
+
+  const { id } = useParams();
+  if (!id) navigate("/");
 
   useEffect(() => {
-    fetchData(id);
+    if (id) fetchData(id);
   }, [id]);
 
   async function fetchData(id) {
-    const response = await instance.get("/product/get/" + id);
-    console.log(response);
-    setProduct(response.data);
+    try {
+      const response = await instance.get("/product/get/" + id);
+      setProduct(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <>
       {product && (
-        <div id="singleProduct">
-          <div className="left">
-            <img src={product.image} alt="Product Image" />
+        <div id="singleProduct" className="flex gap-2 px-12 py-12">
+          <div className="left w-1/4 mr-6">
+            <img className="" src={product.image} />
           </div>
-          <div className="right">
-            <h3>{product.title}</h3>
-            <p>
-              <em>Category: </em>
-              {product.category}
-            </p>
-            <p>
-              <em>Brand: </em>
-              {product.brand}
-            </p>
-            <p>
-              <em>Price: </em>
+          <div className="right w-3/4">
+            <h3 className="text-4xl mb-2">{product.name}</h3>
+            <p className="flex items-center font-bold mb-2">
+              <LiaRupeeSignSolid />
               {product.price}
             </p>
-            <p>{product.description}</p>
+            <p className="mb-2">{product.category}</p>
+            <p className="mb-2">{product.brand}</p>
 
+            <p className="mb-2">{product.description}</p>
             <button
               onClick={() => toggleWishlist(product._id)}
-              className="addToCartBtn"
+              className="addToCartBtn px-5 py-2 rounded-lg bg-red-500 text-white mx-3"
+              disabled={loading}
             >
               {isInWishlist(product._id)
                 ? "Remove from Wishlist"
                 : "Add to Wishlist"}
             </button>
-
             <button
               onClick={() => addToCart(product._id)}
-              className="addToCartBtn"
+              className="addToCartBtn px-5 py-2 rounded-lg bg-red-500 text-white mx-3"
+              disabled={cartLoading}
             >
-              Add to Cart
+              Add To Cart
             </button>
           </div>
         </div>

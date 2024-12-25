@@ -15,7 +15,7 @@ const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
       ? "https://your-frontend-domain.com"
-      : "http://localhost:5173",
+      : process.env.FRONTEND_URL,
   credentials: true, // This allows the server to accept cookies
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allowed methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers

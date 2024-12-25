@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useWishlist } from "../hooks/useWishlist";
 
 function ProductCard({ product }) {
-  const { toggleWishlist, isInWishlist } = useWishlist();
+  const { toggleWishlist, isInWishlist, loading } = useWishlist();
+
   return (
     <div className="product">
       <div className="productImage">
@@ -22,7 +23,8 @@ function ProductCard({ product }) {
         </p>
         <button
           onClick={() => toggleWishlist(product._id)}
-          className="addToCartBtn"
+          className="addToCartBtn bg-red-500 text-white"
+          disabled={loading}
         >
           {isInWishlist(product._id)
             ? "Remove from Wishlist"

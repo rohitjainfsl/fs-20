@@ -9,6 +9,7 @@ import RegisterSeller from "./pages/RegisterSeller";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddProduct from "./pages/AddProduct";
 import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
 import { AuthProvider } from "./contexts/Auth";
 import SingleProduct from "./pages/SIngleProduct";
 
@@ -57,6 +58,14 @@ function App() {
         {
           path: "/product/:id",
           element: <SingleProduct />,
+        },
+        {
+          path: "/cart",
+          element: (
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          ),
         },
       ],
     },

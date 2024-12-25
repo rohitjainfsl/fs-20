@@ -19,10 +19,10 @@ img {
 .black {
   color: #000;
 }
-header,
+/* header,
 footer {
   background-color: aquamarine;
-}
+} */
 header {
   display: flex;
   justify-content: space-between;
@@ -34,9 +34,9 @@ header {
 header ul {
   display: flex;
 }
-header a {
+/* header a {
   color: #803b3b;
-}
+} */
 header h1 {
   word-spacing: -10px;
 }
@@ -95,11 +95,11 @@ header ul li:hover .submenu {
   padding-bottom: 0.25rem;
 }
 .product .productContent .addToCartBtn {
-  background-color: aquamarine;
+  /* background-color: aquamarine;
+  border: 2px solid rgb(70, 230, 176); */
   padding: 6px 12px;
   margin: 0.5rem 0.25rem;
   font-size: 0.8rem;
-  border: 2px solid rgb(70, 230, 176);
   cursor: pointer;
   border-radius: 10px;
   font-weight: 700;
