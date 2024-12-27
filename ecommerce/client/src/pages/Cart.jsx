@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import useCart from "../hooks/useCart";
+import { useCart } from "../hooks/useCart";
 import { Link } from "react-router-dom";
 import { LiaRupeeSignSolid } from "react-icons/lia";
+import ApplyCoupon from "../components/ApplyCoupon";
 
 function Cart() {
   const { cart, fetchCart, updateQuantity, removeFromCart } = useCart();
@@ -10,7 +11,7 @@ function Cart() {
     fetchCart();
   }, []);
 
-//   console.log(cart);
+  //   console.log(cart);
 
   if (!cart || cart?.items?.length === 0) {
     return (
@@ -84,6 +85,9 @@ function Cart() {
         <div className="lg:col-span-1">
           <div className="border rounded-lg p-4 sticky top-4">
             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+
+            <ApplyCoupon />
+
             <div className="space-y-2 pb-4 border-b">
               <div className="flex justify-between">
                 <span>Subtotal</span>
@@ -92,6 +96,14 @@ function Cart() {
                   {cart.totalAmount.toFixed(2)}
                 </span>
               </div>
+
+              {cart.discountAmount > 0 && (
+                <div className="flex justify-between text-green-500">
+                  <span>Discount</span>
+                  <span>- {cart.discountAmount}</span>
+                </div>
+              )}
+
               <div className="flex justify-between">
                 <span>Shipping</span>
                 <span>Free</span>

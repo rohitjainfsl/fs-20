@@ -56,9 +56,14 @@ function Profile() {
               <Link>My Orders</Link>
             </li>
             {data.role === "seller" && (
-              <li>
-                <Link to={`/my-products/${data._id}`}>My products</Link>
-              </li>
+              <>
+                <li>
+                  <Link to={`/my-products`}>My products</Link>
+                </li>
+                <li>
+                  <Link to={`/my-coupons`}>My Coupons</Link>
+                </li>
+              </>
             )}
           </ul>
         </aside>

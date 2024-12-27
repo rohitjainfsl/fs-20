@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
-import useCart from "../hooks/useCart";
+import { useCart } from "../hooks/useCart";
 import { useEffect } from "react";
 
 function Header() {
@@ -9,7 +9,7 @@ function Header() {
 
   useEffect(() => {
     if (isAuthenticated) fetchCart();
-  }, [isAuthenticated, cart]);
+  }, [isAuthenticated]);
 
   const handleLogout = async () => {
     await logout();

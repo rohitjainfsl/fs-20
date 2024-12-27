@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import instance from "../axiosConfig";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import { useWishlist } from "../hooks/useWishlist";
-import useCart from "../hooks/useCart";
+import {useCart} from "../hooks/useCart";
 
 function SingleProduct() {
   const [product, setProduct] = useState({});
