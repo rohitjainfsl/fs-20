@@ -15,11 +15,19 @@ import SingleProduct from "./pages/SIngleProduct";
 import MyCoupons from "./pages/MyCoupons";
 import CartProvider from "./contexts/CartProvider";
 import CreateCoupons from "./pages/CreateCoupons";
+import CheckoutForm from "./pages/CheckoutForm";
+import OrderSuccess from "./pages/OrderSuccess";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const StripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
 
 function AppWrapper() {
   return (
     <CartProvider>
-      <First />
+      <Elements stripe={StripePromise}>
+        <First />
+      </Elements>
     </CartProvider>
   );
 }
@@ -91,6 +99,22 @@ function App() {
           element: (
             <ProtectedRoute>
               <CreateCoupons />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/checkout",
+          element: (
+            <ProtectedRoute>
+              <CheckoutForm />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/order-success",
+          element: (
+            <ProtectedRoute>
+              <OrderSuccess />
             </ProtectedRoute>
           ),
         },

@@ -1,17 +1,23 @@
 import { useEffect } from "react";
 import { useCart } from "../hooks/useCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import ApplyCoupon from "../components/ApplyCoupon";
 
 function Cart() {
   const { cart, fetchCart, updateQuantity, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCart();
   }, []);
 
   //   console.log(cart);
+
+  function proceedToCheckout() {
+    //TESTING / LOGIC
+    navigate("/checkout");
+  }
 
   if (!cart || cart?.items?.length === 0) {
     return (
@@ -116,7 +122,10 @@ function Cart() {
                 {Math.round(cart.totalAmount)}
               </span>
             </div>
-            <button className="w-full bg-blue-500 text-white py-2 rounded">
+            <button
+              className="w-full bg-blue-500 text-white py-2 rounded"
+              onClick={proceedToCheckout}
+            >
               Proceed to Checkout
             </button>
           </div>

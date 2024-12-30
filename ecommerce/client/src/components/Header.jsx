@@ -45,7 +45,12 @@ function Header() {
               </Link>
               <Link to="/addProduct">Add Product</Link>
               <Link to="/profile">Profile</Link>
-              <button onClick={handleLogout}>Logout</button>
+              <button
+                onClick={handleLogout}
+                className="bg-slate-600 p-1 rounded hover:bg-slate-800"
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>
